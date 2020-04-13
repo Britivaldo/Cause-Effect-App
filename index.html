@@ -3,25 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <title>Cause Effect App</title>
     <style>
         html, body {
+            font-family: 'Roboto';
+            font-size: 20px;
             margin: 0;
             padding: 0;
+            text-align: center;
+        }
+        div {
+            padding: 10px;
+            cursor: pointer;
+            overflow: scroll;
         }
     </style>
 </head>
 <body>
+    <div id="container"></div>
 
 
     <script>
-        const people = [
-        {name: "...", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        {name: "...", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        {name: "...", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        {name: "...", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        {name: "...", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."}
+        let container = document.querySelector('#container');
+        const peoples = [
+        { name: "Maria", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
+        { name: "John", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
+        { name: "Joana", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
+        { name: "João", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
+        { name: "Camila", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."}
         ];
+
+        peoples.forEach(element => {
+            return container.innerHTML += '<div id='+element.name+' onclick= user(event) >'+element.name+'</div>';
+        });
+
+        function user(event){
+            console.log(event.target);
+            let id = event.target.id;
+            let div = document.createElement("div");
+
+            let conteudo = document.createTextNode(" nome: "+ event.target.id );
+            div.appendChild(conteudo);
+            event.target.appendChild(div);
+            //let people = document.querySelector('#'+id);
+            event.target.style.color = "red";
+            event.target.style.height = "100px";
+            event
+            event.target.style.transition = "all 5s";
+            
+        }
+
     </script>
 
 </body>
