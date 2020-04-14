@@ -13,10 +13,17 @@
             padding: 0;
             text-align: center;
         }
-        div {
-            padding: 10px;
-            cursor: pointer;
+        .contexto {
+            /* padding: 10px; */
+            display: none;
             /* overflow: scroll; */
+        }
+        .title {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 1px;
+            color: white;
+            background: rebeccapurple;
         }
     </style>
 </head>
@@ -35,14 +42,33 @@
         ];
 
         peoples.forEach(element => {
-            return container.innerHTML += '<div id='+element.name+' onclick= user(event)>'+element.name+'</div><div id="cont'+element.name+'"></div>';
+            return container.innerHTML += '<div id='+element.name+' class="title" onclick= user(event)>'+element.name+'</div><div style="padding: 10px; text-align: left; display: none; " id="cont'+element.name+'">'+inf(element)+'</div>';
         });
 
+        function inf(element) {
+            return ('<div> Rua:'+element.street+'</div> <div> Cidade: '+element.city+'</div> <div> Estado: '+element.state+'</div> <div> Pais: '+element.country+'</div> <div> Telefone: '+element.telephone+'</div> <div> Aniversário: '+element.birthday+'</div>')
+        }
+    
+        
         function user(event){
+            let id = event.target.id;
+            let infor = document.querySelector('#cont'+id);
+            console.log(infor.style.display); 
+
+            if( infor.style.display == 'none'){
+                infor.style.display = 'block';
+            }else{
+
+                infor.style.display = 'none';
+            }
+            /*
             console.log(event.target);  
             let id = event.target.id;
             let infor = document.querySelector('#cont'+id);
-            console.log(infor);
+            //console.log(infor.style.display); 
+            let c = infor.style.display == 'none'? 'block' : 'none';
+            console.log(c);  
+
             let people = peoples.filter((value)=>{
                 return value.name == id;
             });
@@ -95,6 +121,7 @@
             */
             
         }
+        
 
     </script>
 
