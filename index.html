@@ -16,7 +16,7 @@
         div {
             padding: 10px;
             cursor: pointer;
-            overflow: scroll;
+            /* overflow: scroll; */
         }
     </style>
 </head>
@@ -27,30 +27,72 @@
     <script>
         let container = document.querySelector('#container');
         const peoples = [
-        { name: "Maria", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        { name: "John", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        { name: "Joana", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        { name: "João", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."},
-        { name: "Camila", street: "...", city: "...", state: "...", country: "...", telephone: "...", birthday: "..."}
+        { name: "Maria", street: "Rua sa", city: "Montes Claros", state: "MG", country: "BR", telephone: "***", birthday: "04"},
+        { name: "John", street: "Rua M", city: "SP", state: "SP", country: "BR", telephone: "123", birthday: "08"},
+        { name: "Joana", street: "Rua Frei", city: "Rio", state: "RJ", country: "BR", telephone: "444", birthday: "10"},
+        { name: "João", street: "Rua Domingues", city: "Salvador", state: "BA", country: "BR", telephone: "124", birthday: "11"},
+        { name: "Camila", street: "Rua J", city: "BH", state: "MG", country: "BR", telephone: "334", birthday: "12"}
         ];
 
         peoples.forEach(element => {
-            return container.innerHTML += '<div id='+element.name+' onclick= user(event) >'+element.name+'</div>';
+            return container.innerHTML += '<div id='+element.name+' onclick= user(event)>'+element.name+'</div><div id="cont'+element.name+'"></div>';
         });
 
         function user(event){
-            console.log(event.target);
+            console.log(event.target);  
             let id = event.target.id;
-            let div = document.createElement("div");
+            let infor = document.querySelector('#cont'+id);
+            console.log(infor);
+            let people = peoples.filter((value)=>{
+                return value.name == id;
+            });
 
+            console.log(people);
+            let name = document.createElement("div");
+            let contName= document.createTextNode(" Nome: "+ people[0].name);
+            name.appendChild(contName);
+            let street = document.createElement("div");
+            let contStreet= document.createTextNode(" Rua: "+ people[0].street);
+            street.appendChild(contStreet);
+            let city = document.createElement("div");
+            let contCity= document.createTextNode(" Cidade: "+ people[0].city);
+            city.appendChild(contCity);
+            let state = document.createElement("div");
+            let contState= document.createTextNode(" Estado: "+ people[0].state);
+            state.appendChild(contState);
+            let country = document.createElement("div");
+            let contCountry= document.createTextNode(" País: "+ people[0].country);
+            country.appendChild(contCountry);
+            let telephone = document.createElement("div");
+            let contTelephone= document.createTextNode(" Telefone: "+ people[0].telephone)
+            telephone.appendChild(contTelephone);;
+            let birthday = document.createElement("div");
+            let contBirthday= document.createTextNode(" Aniversário: "+ people[0].birthday);
+            birthday.appendChild(contBirthday);
+
+
+            infor.style.height = "300px";
+
+            
+            infor.appendChild(street);
+            infor.appendChild(city);
+            infor.appendChild(state);
+            infor.appendChild(country);
+            infor.appendChild(telephone);
+            infor.appendChild(birthday);
+
+
+
+            /*
+            let div = document.createElement("div");
             let conteudo = document.createTextNode(" nome: "+ event.target.id );
             div.appendChild(conteudo);
             event.target.appendChild(div);
             //let people = document.querySelector('#'+id);
             event.target.style.color = "red";
             event.target.style.height = "100px";
-            event
             event.target.style.transition = "all 5s";
+            */
             
         }
 
